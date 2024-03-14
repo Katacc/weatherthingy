@@ -1,34 +1,31 @@
 #include <LiquidCrystal.h>
 
 char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWYZ";
-int alphabetsize = sizeof(alphabet); 
+int alphabetSize = sizeof(alphabet) - 1; 
 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
-void setup()
-{
+void setup() {
   lcd.begin(16, 2); 
 }
 
-void loop()
-{
-  for (int i = 0; i < 32; i++)
-  {
+void loop() {
+  int j = 0;
+  for (int i = 0; i < 32; i++) {
     lcd.clear();
 
-    int j = i % alphabetsize; // Use modulus operator to cycle through the alphabet array
+    j = i % alphabetSize;
 
-    if (i < 16)
-    {
-      lcd.setCursor(i, 0); // first row
+    if (i < 16) {
+      lcd.setCursor(i, 0); 
       lcd.write(alphabet[j]);
     }
-    else
-    {
-      lcd.setCursor(16 + (15 - i), 1); // second row
+    else {
+      lcd.setCursor(16 + (15 - i), 1); 
       lcd.write(alphabet[j]);
     }
 
-    delay(300);
+    delay(200);
+
   }
 }
